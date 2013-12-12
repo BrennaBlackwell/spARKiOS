@@ -98,16 +98,22 @@
                                                     <state key="normal" image="thumbs_up.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="ratingUpButtonPressed:" destination="RmL-Ky-kEX" eventType="touchUpInside" id="oAr-oT-N1W"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O6N-Eg-hTe">
-                                                    <rect key="frame" x="84" y="180" width="32" height="32"/>
+                                                    <rect key="frame" x="76" y="180" width="32" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="thumbs_down.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="ratingDownButtonPressed:" destination="RmL-Ky-kEX" eventType="touchUpInside" id="xxA-uA-m4j"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rai-s0-rzP">
-                                                    <rect key="frame" x="269" y="174" width="38" height="37"/>
+                                                    <rect key="frame" x="283" y="178" width="37" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="ic_menu_moreoverflow_normal_holo_light.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +127,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Cnr-NT-SiM">
-                                                    <rect key="frame" x="138" y="181" width="106" height="30"/>
+                                                    <rect key="frame" x="127" y="181" width="106" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="0 comments">
@@ -131,14 +137,25 @@
                                                         <action selector="commentButtonPressed:" destination="RmL-Ky-kEX" eventType="touchUpInside" id="pin-6Z-qg3"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NJE-lF-XLn">
+                                                    <rect key="frame" x="245" y="181" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="btn_delete_content.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="trashButtonPressed:" destination="RmL-Ky-kEX" eventType="touchUpInside" id="Xw3-5X-TSF"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentsButton" destination="Cnr-NT-SiM" id="S8g-hQ-ame"/>
                                             <outlet property="messageTextView" destination="0Kn-gY-ndn" id="DeK-uD-hlX"/>
-                                            <outlet property="ratingLabel" destination="OaH-17-KNx" id="FgD-mA-D8Y"/>
+                                            <outlet property="rateLabel" destination="OaH-17-KNx" id="Man-4h-IxM"/>
                                             <outlet property="timePostedLabel" destination="aLA-my-YfX" id="0Mo-lU-Zpd"/>
                                             <outlet property="titleLabel" destination="8Tw-uq-tgh" id="RCu-CC-hOf"/>
+                                            <outlet property="trashButton" destination="NJE-lF-XLn" id="rQe-vP-fKa"/>
                                             <outlet property="usernameLabel" destination="uRb-vW-C0K" id="FnC-lH-ciY"/>
                                             <outlet property="userpicImageView" destination="oVJ-Cb-R8Q" id="HTx-ci-x4K"/>
                                             <outlet property="voteDownButton" destination="O6N-Eg-hTe" id="g5F-KE-yEq"/>
@@ -177,7 +194,7 @@
         <scene sceneID="pmE-IW-bG3">
             <objects>
                 <viewController storyboardIdentifier="CommentView" id="b56-RB-Zyi" customClass="CommentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zOh-kT-vRP">
+                    <view key="view" contentMode="scaleToFill" id="zOh-kT-vRP" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -227,7 +244,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.83950494260204078" green="0.83950494260204078" blue="0.83950494260204078" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" id="T5I-QF-J4V">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="102" sectionHeaderHeight="22" sectionFooterHeight="22" id="T5I-QF-J4V">
                                 <rect key="frame" x="0.0" y="150" width="320" height="366"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -282,10 +299,24 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldReturn:" destination="b56-RB-Zyi" eventType="editingDidEndOnExit" id="yHm-fF-ie6"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="backgroundTouched" destination="b56-RB-Zyi" eventType="touchDown" id="AX7-bu-7tK"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="zsr-qf-hJi">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="fcq-7J-xZi">
+                            <connections>
+                                <action selector="submitButtonPressed:" destination="b56-RB-Zyi" id="fwC-iP-6sN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="messageTextView" destination="nwo-ry-mgU" id="4Az-O3-AOa"/>
                         <outlet property="submitCommentTextField" destination="uD2-1y-KOR" id="RPC-M9-yXr"/>
@@ -526,24 +557,18 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_menu_profile.png" id="Utl-dA-fyB">
-                                <rect key="frame" x="20" y="82" width="120" height="120"/>
+                                <rect key="frame" x="14" y="20" width="120" height="120"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7zX-2S-QiJ">
-                                <rect key="frame" x="148" y="92" width="152" height="26"/>
+                                <rect key="frame" x="150" y="20" width="152" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent Posts:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mZs-Fx-9li">
-                                <rect key="frame" x="20" y="273" width="108" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recently Viewed:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nnp-oQ-Pvm">
-                                <rect key="frame" x="174" y="273" width="132" height="21"/>
+                                <rect key="frame" x="20" y="216" width="108" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -565,7 +590,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXS-wc-QTX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="798"/>
+            <point key="canvasLocation" x="1119" y="798"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="L1u-6Z-xj4">
@@ -859,6 +884,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn_delete_content.png" width="256" height="256"/>
         <image name="drawer_home.png" width="64" height="64"/>
         <image name="ic_drawer.png" width="24" height="24"/>
         <image name="ic_menu_about.png" width="64" height="64"/>

@@ -30,6 +30,9 @@
 
 - (IBAction)segmentedControllerValueChanged:(UISegmentedControl *)sender;
 - (IBAction)commentButtonPressed:(id)sender;
+- (IBAction)ratingUpButtonPressed:(id)sender;
+- (IBAction)ratingDownButtonPressed:(id)sender;
+- (IBAction)trashButtonPressed:(id)sender;
 - (IBAction)postButtonPressed:(id)sender;
 
 @end

@@ -41,6 +41,7 @@
     //NSLog(@"User ID: %@", userID);
     
     //[self loadDataFromServer];
+
 }
 
 
@@ -53,6 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self loadDataFromServer];
+    [_tableView reloadData];
 }
 
 
@@ -86,7 +88,6 @@
 {    
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:_tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    //NSLog(@"You pressed the comment button for cell number: %ld", (long)indexPath.row);
     
     CommentViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CommentView"];
     newViewController.originalDiscussion = [_discussionArray objectAtIndex:indexPath.row];
@@ -112,11 +113,9 @@
     NSDictionary *discussionJSON = [NSJSONSerialization JSONObjectWithData:discussionData options:kNilOptions error:&discussionError];
     
     NSArray *discussionArray = [discussionJSON objectForKey:@"contents"];
-    //NSLog(@"Number of Discussion: %lu", (unsigned long)[discussionArray count]);
     for (int i = 0; i < [discussionArray count]; i++)
     {
         NSDictionary *discussion = [discussionArray objectAtIndex:i];
-        //NSLog(@"%@", discussion);
         
         [_discussionArray addObject:[NewsFeedObject
                                      newNewsFeedObjectWithID:[discussion objectForKey:@"id"]
@@ -128,16 +127,14 @@
                                      withUserImage:[discussion objectForKey:@""]
                                      withLatitude:[discussion objectForKey:@"latitude"]
                                      withLongitude:[discussion objectForKey:@"longitude"]
-                                     withRating:[discussion objectForKey:@"user_rating"]
-                                     withRatingFlag:[discussion objectForKey:@"user_rating_flag"]]];
+                                     withRating:[discussion objectForKey:@"rating_total"]
+                                     withRatingFlag:[discussion objectForKey:@"rating_total_flag"]]];
         
         NSArray *commentsArray = [discussion objectForKey:@"comments"];
-        //NSLog(@"%@", commentsArray);
-        //NSLog(@"Number of Comments: %lu", (unsigned long)[commentsArray count]);
+
         [[_discussionArray objectAtIndex:i] setComments:commentsArray];
         [[_discussionArray objectAtIndex:i] setNumberOfComments:[NSString stringWithFormat:@"%lu", (unsigned long)[commentsArray count]]];
     }
-    //NSLog(@"%@", _discussionArray);
     
     NSString *bulletinURLString = @"http://csce.uark.edu/~mmmcclel/spark/loadnewsfeed.php?value1=";
     bulletinURLString = [discussionURLString stringByAppendingFormat:@"%@&value2=%@", username, kBulletin];
@@ -151,7 +148,6 @@
     for (int i = 0; i < [bulletinArray count]; i++)
     {
         NSDictionary *bulletin = [bulletinArray objectAtIndex:i];
-        //NSLog(@"%@", bulletin);
         
         [_bulletinArray addObject:[NewsFeedObject
                                      newNewsFeedObjectWithID:[bulletin objectForKey:@"id"]
@@ -167,6 +163,32 @@
                                      withRatingFlag:[bulletin objectForKey:@"user_rating_flag"]]];
     }
 
+//    for (int i = 0; i < [_discussionArray count]; i++)
+//    {
+//        NewsFeedObject *printObject = [_discussionArray objectAtIndex:i];
+//        NSLog(@"Title: %@", printObject.titleString);
+//        NSLog(@"User: %@", printObject.usernameString);
+//        NSLog(@"Message: %@", printObject.messageString);
+//        NSLog(@"Rating: %@", printObject.ratingString);
+//        NSLog(@"Rating Flag: %@", printObject.ratingFlagString);
+//    }
+}
+
+
+- (IBAction)ratingUpButtonPressed:(id)sender
+{
+    
+}
+
+
+- (IBAction)ratingDownButtonPressed:(id)sender
+{
+    
+}
+
+
+- (IBAction)trashButtonPressed:(id)sender
+{
     
 }
 
@@ -222,13 +244,39 @@
         cell.commentsButton.hidden = YES;
     }
     
+    if ([objectToDisplay.userID isEqualToString:userID] )
+    {
+        cell.trashButton.hidden = NO;
+    }
+    
+    else
+    {
+         cell.trashButton.hidden = YES;
+    }
+    
     cell.titleLabel.text = objectToDisplay.titleString;
     cell.messageTextView.text = objectToDisplay.messageString;
     cell.timePostedLabel.text = objectToDisplay.timePostedString;
-    //cell.eventLabel.text = objectToDisplay.eventString;
-    //cell.ratingLabel.text = objectToDisplay.ratingString;
+    cell.rateLabel.text = [NSString stringWithFormat:@"%@", objectToDisplay.ratingString];
     cell.usernameLabel.text = objectToDisplay.usernameString;
-    //NSLog(@"%@", objectToDisplay.ratingString);
+    
+    //NSString *flagCheckString = [NSString stringWithFormat:@"%@", objectToDisplay.ratingFlagString];
+//    if ([flagCheckString isEqualToString:@"-1"])
+//    {
+//        [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbdown_checked.png"] forState:UIControlStateNormal];
+//    }
+    
+//    if ([flagCheckString isEqualToString:@"1"])
+//    {
+//        [cell.voteUpButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbup_checked.png"] forState:UIControlStateNormal];
+//    }
+//    
+//    else
+//    {
+//        [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"thumbs_down.png"] forState:UIControlStateNormal];
+//        [cell.voteUpButton setBackgroundImage:[UIImage imageNamed:@"thumbs_up.png"] forState:UIControlStateNormal];
+//    }
+
     
     if ([objectToDisplay.numberOfComments isEqualToString:@"1"])
         [cell.commentsButton setTitle:[NSString stringWithFormat:@"%@ comment", objectToDisplay.numberOfComments] forState:UIControlStateNormal];

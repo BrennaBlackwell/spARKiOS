@@ -12,6 +12,8 @@
 #import "NewsFeedCell.h"
 #import "NewsFeedObject.h"
 
+#define kLoginInfo @"Login.plist"
+
 @interface CommentViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource>
 
@@ -25,5 +27,9 @@
 @property (nonatomic, strong) IBOutlet UITextField *submitCommentTextField;
 @property (nonatomic, strong) NewsFeedObject *originalDiscussion;
 @property (nonatomic, strong) NSMutableArray *commentsArray;
+
+- (IBAction)backgroundTouched;
+- (IBAction)textFieldReturn:(UITextField *)sender;
+- (IBAction)submitButtonPressed:(id)sender;
 
 @end

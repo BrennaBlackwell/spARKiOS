@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SWRevealViewController.h"
 
+#define kLoginInfo @"Login.plist"
+
 @interface ProfileViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sidebarButton;

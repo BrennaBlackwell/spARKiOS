@@ -94,7 +94,7 @@
     
     baseURLString = [baseURLString stringByAppendingFormat:@"%@&value3=%@&value4=%@&value5=%@&value6=%f&value7=%f", userID, titleString, messageString, kPublic, userLatitude, userLongitude];
     
-    NSLog(@"Base URL: %@", baseURLString);
+    //NSLog(@"Base URL: %@", baseURLString);
     
     NSURL *commentURL = [NSURL URLWithString:baseURLString];
     NSData *urlData = [NSData dataWithContentsOfURL:commentURL];
