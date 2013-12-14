@@ -11,7 +11,7 @@
 #import "NewsFeedCell.h"
 #import "SWRevealViewController.h"
 #import "CommentViewController.h"
-#import "PostViewController.h"
+#import "PostNewContentViewController.h"
 
 #define kLoginInfo @"Login.plist"
 #define kDiscussion @"Discussion"

@@ -28,7 +28,6 @@
     for (int i = 0; i < [_originalDiscussion.comments count]; i++)
     {
         NSDictionary *comment = [_originalDiscussion.comments objectAtIndex:i];
-        //NSLog(@"%@", comment);
         
         [_commentsArray addObject:[NewsFeedObject
                                      newNewsFeedObjectWithID:[comment objectForKey:@"id"]

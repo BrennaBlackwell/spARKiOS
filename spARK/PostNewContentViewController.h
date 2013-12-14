@@ -15,7 +15,7 @@
 #define kPublic @"1"
 #define kLoginInfo @"Login.plist"
 
-@interface PostViewController : UIViewController
+@interface PostNewContentViewController : UIViewController
 <CLLocationManagerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *titleField;

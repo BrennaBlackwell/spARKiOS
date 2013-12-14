@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 uark.edu. All rights reserved.
 //
 
-#import "PostViewController.h"
+#import "PostNewContentViewController.h"
 
-@interface PostViewController ()
+@interface PostNewContentViewController ()
 
 @end
 
 
-@implementation PostViewController
+@implementation PostNewContentViewController
 
 
 - (void)viewDidLoad
@@ -94,8 +94,6 @@
     
     baseURLString = [baseURLString stringByAppendingFormat:@"%@&value3=%@&value4=%@&value5=%@&value6=%f&value7=%f", userID, titleString, messageString, kPublic, userLatitude, userLongitude];
     
-    //NSLog(@"Base URL: %@", baseURLString);
-    
     NSURL *commentURL = [NSURL URLWithString:baseURLString];
     NSData *urlData = [NSData dataWithContentsOfURL:commentURL];
     
@@ -103,9 +101,7 @@
     {
         NSError *errorJSON = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
-        NSLog(@"%@", json);
         NSString *successString = [[json objectForKey:@"createSuccess"] stringValue];
-        NSLog(@"Success String: %@", successString);
         
         if ([successString isEqualToString:@"1"])
         {

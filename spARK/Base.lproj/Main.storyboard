@@ -592,10 +592,10 @@
             </objects>
             <point key="canvasLocation" x="1119" y="798"/>
         </scene>
-        <!--Post View Controller-->
+        <!--Post New Content View Controller-->
         <scene sceneID="L1u-6Z-xj4">
             <objects>
-                <viewController storyboardIdentifier="PostView" id="B5X-4C-YIg" customClass="PostViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostView" id="B5X-4C-YIg" customClass="PostNewContentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pdd-r6-wIe" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

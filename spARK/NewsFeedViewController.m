@@ -19,6 +19,7 @@
 
 @end
 
+
 @implementation NewsFeedViewController
 
 - (void)viewDidLoad
@@ -67,7 +68,7 @@
 
 - (IBAction)postButtonPressed:(id)sender
 {
-    PostViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PostView"];
+    PostNewContentViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PostView"];
     [self.navigationController pushViewController:newViewController animated:YES];
 }
 
@@ -112,8 +113,6 @@
     NSString *ratingURLString = @"http://csce.uark.edu/~mmmcclel/spark/rating.php?value1=";
     ratingURLString = [ratingURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, objectID, type];
     
-    //NSLog(@"%@", ratingURLString);
-    
     NSURL *url = [NSURL URLWithString:ratingURLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if(urlData)
@@ -125,6 +124,8 @@
         if ([successString isEqualToString:@"1"])
         {
              NSLog(@"Like success");
+            [self loadDataFromServer];
+            [_tableView reloadData];
         }
         
         else
@@ -157,8 +158,6 @@
     NSString *ratingURLString = @"http://csce.uark.edu/~mmmcclel/spark/rating.php?value1=";
     ratingURLString = [ratingURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, objectID, type];
     
-    NSLog(@"%@", ratingURLString);
-    
     NSURL *url = [NSURL URLWithString:ratingURLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if(urlData)
@@ -170,6 +169,8 @@
         if ([successString isEqualToString:@"1"])
         {
             NSLog(@"Dislike success");
+            [self loadDataFromServer];
+            [_tableView reloadData];
         }
         
         else
@@ -203,7 +204,6 @@
     
     NSString *deleteURLString = @"http://csce.uark.edu/~mmmcclel/spark/deletecontent.php?value1=";
     deleteURLString = [deleteURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@&value4=%@", userID, objectID, contentType, @"0"];
-    //NSLog(@"Delete URL: %@", deleteURLString);
     
     NSURL *url = [NSURL URLWithString:deleteURLString];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -216,6 +216,8 @@
         if ([successString isEqualToString:@"1"])
         {
             NSLog(@"Delete success");
+            [self loadDataFromServer];
+            [_tableView reloadData];
         }
         
         else
@@ -238,17 +240,18 @@
 {
     NSString *discussionURLString = @"http://csce.uark.edu/~mmmcclel/spark/loadnewsfeed.php?value1=";
     discussionURLString = [discussionURLString stringByAppendingFormat:@"%@&value2=%@", username, kDiscussion];
-    //NSLog(@"%@", discussionURLString);
     NSURL *discussionURL = [NSURL URLWithString:discussionURLString];
     NSData *discussionData = [NSData dataWithContentsOfURL:discussionURL];
     NSError *discussionError = nil;
     NSDictionary *discussionJSON = [NSJSONSerialization JSONObjectWithData:discussionData options:kNilOptions error:&discussionError];
     
+    [_discussionArray removeAllObjects];
+    [_bulletinArray removeAllObjects];
+    
     NSArray *discussionArray = [discussionJSON objectForKey:@"contents"];
     for (int i = 0; i < [discussionArray count]; i++)
     {
         NSDictionary *discussion = [discussionArray objectAtIndex:i];
-        //NSLog(@"%@", discussion);
         
         [_discussionArray addObject:[NewsFeedObject
                                      newNewsFeedObjectWithID:[discussion objectForKey:@"id"]
@@ -292,8 +295,8 @@
                                      withUserImage:[bulletin objectForKey:@""]
                                      withLatitude:[bulletin objectForKey:@"latitude"]
                                      withLongitude:[bulletin objectForKey:@"longitude"]
-                                     withRating:[bulletin objectForKey:@"user_rating"]
-                                     withRatingFlag:[bulletin objectForKey:@"user_rating_flag"]]];
+                                     withRating:[bulletin objectForKey:@"rating_total"]
+                                     withRatingFlag:[bulletin objectForKey:@"user_rating"]]];
     }
 }
 

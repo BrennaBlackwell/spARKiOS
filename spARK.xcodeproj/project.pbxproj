@@ -20,7 +20,7 @@
 		656D0E7A1856B8180047C137 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E791856B8180047C137 /* MessageUI.framework */; };
 		656D0E841857A3C40047C137 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E831857A3C40047C137 /* MapKit.framework */; };
 		656D0E8A18580E280047C137 /* MapTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D0E8918580E280047C137 /* MapTag.m */; };
-		656D0E8E185822310047C137 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D0E8D185822310047C137 /* PostViewController.m */; };
+		656D0E8E185822310047C137 /* PostNewContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D0E8D185822310047C137 /* PostNewContentViewController.m */; };
 		656D0E9018592CCA0047C137 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E8F18592CCA0047C137 /* CoreLocation.framework */; };
 		65A0B12D182714CB0089D5FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A0B12C182714CB0089D5FE /* Foundation.framework */; };
 		65A0B12F182714CB0089D5FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A0B12E182714CB0089D5FE /* CoreGraphics.framework */; };
@@ -91,8 +91,8 @@
 		656D0E831857A3C40047C137 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		656D0E8818580E280047C137 /* MapTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTag.h; sourceTree = "<group>"; };
 		656D0E8918580E280047C137 /* MapTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTag.m; sourceTree = "<group>"; };
-		656D0E8C185822310047C137 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
-		656D0E8D185822310047C137 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		656D0E8C185822310047C137 /* PostNewContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostNewContentViewController.h; sourceTree = "<group>"; };
+		656D0E8D185822310047C137 /* PostNewContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNewContentViewController.m; sourceTree = "<group>"; };
 		656D0E8F18592CCA0047C137 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		65A0B129182714CB0089D5FE /* spARK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spARK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A0B12C182714CB0089D5FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -235,8 +235,8 @@
 				65A0B17E1827163C0089D5FE /* SidebarTableViewController.m */,
 				65A0B17A182715DC0089D5FE /* NewsFeedViewController.h */,
 				65A0B17B182715DC0089D5FE /* NewsFeedViewController.m */,
-				656D0E8C185822310047C137 /* PostViewController.h */,
-				656D0E8D185822310047C137 /* PostViewController.m */,
+				656D0E8C185822310047C137 /* PostNewContentViewController.h */,
+				656D0E8D185822310047C137 /* PostNewContentViewController.m */,
 				656D0E7218569B680047C137 /* CommentViewController.h */,
 				656D0E7318569B680047C137 /* CommentViewController.m */,
 				65A0B180182716DB0089D5FE /* ProfileViewController.h */,
@@ -480,7 +480,7 @@
 				65A533A8182C65440039896E /* NewsFeedObject.m in Sources */,
 				6523A5351835AA3F00F01FF0 /* CheckInViewController.m in Sources */,
 				65A0B18C18271ED20089D5FE /* RegisterViewController.m in Sources */,
-				656D0E8E185822310047C137 /* PostViewController.m in Sources */,
+				656D0E8E185822310047C137 /* PostNewContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
