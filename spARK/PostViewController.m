@@ -103,7 +103,9 @@
     {
         NSError *errorJSON = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
-        NSString *successString = [[json objectForKey:@"success"] stringValue];
+        NSLog(@"%@", json);
+        NSString *successString = [[json objectForKey:@"createSuccess"] stringValue];
+        NSLog(@"Success String: %@", successString);
         
         if ([successString isEqualToString:@"1"])
         {

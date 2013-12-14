@@ -116,25 +116,24 @@
     if (![messageString isEqualToString:@""])
     {
         messageString = [messageString stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-    }
-    
-    NSString *baseURLString = @"http://csce.uark.edu/~mmmcclel/spark/postcomment.php?value1=";
-    baseURLString = [baseURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, discussionID, messageString];
-    
-    NSLog(@"%@", baseURLString);
-    
-    NSURL *commentURL = [NSURL URLWithString:baseURLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:commentURL];
-    
-    if(urlData)
-    {
-        NSError *errorJSON = nil;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
-        NSString *successString = [[json objectForKey:@"success"] stringValue];
         
-        if ([successString isEqualToString:@"1"])
+        
+        NSString *baseURLString = @"http://csce.uark.edu/~mmmcclel/spark/postcomment.php?value1=";
+        baseURLString = [baseURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, discussionID, messageString];
+        
+        NSURL *commentURL = [NSURL URLWithString:baseURLString];
+        NSData *urlData = [NSData dataWithContentsOfURL:commentURL];
+        
+        if(urlData)
         {
-            [self.navigationController popViewControllerAnimated:YES];
+            NSError *errorJSON = nil;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
+            NSString *successString = [[json objectForKey:@"success"] stringValue];
+            
+            if ([successString isEqualToString:@"1"])
+            {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
     }
 }

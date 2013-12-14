@@ -37,11 +37,6 @@
     logInArray = [[NSMutableArray alloc] initWithContentsOfFile:[self dataFilePath:(kLoginInfo)]];
     username = [logInArray objectAtIndex:0];
     userID = [logInArray objectAtIndex:2];
-    
-    //NSLog(@"User ID: %@", userID);
-    
-    //[self loadDataFromServer];
-
 }
 
 
@@ -95,6 +90,142 @@
 }
 
 
+- (IBAction)ratingUpButtonPressed:(id)sender
+{
+    NSString *type = @"like";
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:_tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    NewsFeedObject *objectToRate;
+    if (contentDisplay == 0)
+    {
+        objectToRate = [_discussionArray objectAtIndex:indexPath.row];
+    }
+    
+    else if (contentDisplay == 1)
+    {
+        objectToRate =  [_bulletinArray objectAtIndex:indexPath.row];
+    }
+    
+    NSString *objectID = objectToRate.idString;
+    
+    NSString *ratingURLString = @"http://csce.uark.edu/~mmmcclel/spark/rating.php?value1=";
+    ratingURLString = [ratingURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, objectID, type];
+    
+    //NSLog(@"%@", ratingURLString);
+    
+    NSURL *url = [NSURL URLWithString:ratingURLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if(urlData)
+    {
+        NSError *errorJSON = nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
+        NSString *successString = [[json objectForKey:@"success"] stringValue];
+        
+        if ([successString isEqualToString:@"1"])
+        {
+             NSLog(@"Like success");
+        }
+        
+        else
+        {
+            NSLog(@"Like fail");
+        }
+    }
+}
+
+
+- (IBAction)ratingDownButtonPressed:(id)sender
+{  
+    NSString *type = @"dislike";
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:_tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    NewsFeedObject *objectToRate;
+    if (contentDisplay == 0)
+    {
+        objectToRate = [_discussionArray objectAtIndex:indexPath.row];
+    }
+    
+    else if (contentDisplay == 1)
+    {
+        objectToRate =  [_bulletinArray objectAtIndex:indexPath.row];
+    }
+    
+    NSString *objectID = objectToRate.idString;
+    
+    NSString *ratingURLString = @"http://csce.uark.edu/~mmmcclel/spark/rating.php?value1=";
+    ratingURLString = [ratingURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, objectID, type];
+    
+    NSLog(@"%@", ratingURLString);
+    
+    NSURL *url = [NSURL URLWithString:ratingURLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if(urlData)
+    {
+        NSError *errorJSON = nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
+        NSString *successString = [[json objectForKey:@"success"] stringValue];
+        
+        if ([successString isEqualToString:@"1"])
+        {
+            NSLog(@"Dislike success");
+        }
+        
+        else
+        {
+            NSLog(@"Dislike fail");
+        }
+    }
+}
+
+
+- (IBAction)trashButtonPressed:(id)sender
+{
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:_tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    NSString *contentType;
+    
+    NewsFeedObject *objectToDelete;
+    if (contentDisplay == 0)
+    {
+        objectToDelete = [_discussionArray objectAtIndex:indexPath.row];
+        contentType = @"Discussion";
+    }
+    
+    else if (contentDisplay == 1)
+    {
+        objectToDelete =  [_bulletinArray objectAtIndex:indexPath.row];
+        contentType = @"Bulletin";
+    }
+    
+    NSString *objectID = objectToDelete.idString;
+    
+    NSString *deleteURLString = @"http://csce.uark.edu/~mmmcclel/spark/deletecontent.php?value1=";
+    deleteURLString = [deleteURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@&value4=%@", userID, objectID, contentType, @"0"];
+    //NSLog(@"Delete URL: %@", deleteURLString);
+    
+    NSURL *url = [NSURL URLWithString:deleteURLString];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if(urlData)
+    {
+        NSError *errorJSON = nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
+        NSString *successString = [[json objectForKey:@"deleteSuccess"] stringValue];
+        
+        if ([successString isEqualToString:@"1"])
+        {
+            NSLog(@"Delete success");
+        }
+        
+        else
+        {
+            NSLog(@"Delete fail");
+        }
+    }
+}
+
+
 - (NSString *)dataFilePath:(NSString *)fileName
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -107,6 +238,7 @@
 {
     NSString *discussionURLString = @"http://csce.uark.edu/~mmmcclel/spark/loadnewsfeed.php?value1=";
     discussionURLString = [discussionURLString stringByAppendingFormat:@"%@&value2=%@", username, kDiscussion];
+    //NSLog(@"%@", discussionURLString);
     NSURL *discussionURL = [NSURL URLWithString:discussionURLString];
     NSData *discussionData = [NSData dataWithContentsOfURL:discussionURL];
     NSError *discussionError = nil;
@@ -116,6 +248,7 @@
     for (int i = 0; i < [discussionArray count]; i++)
     {
         NSDictionary *discussion = [discussionArray objectAtIndex:i];
+        //NSLog(@"%@", discussion);
         
         [_discussionArray addObject:[NewsFeedObject
                                      newNewsFeedObjectWithID:[discussion objectForKey:@"id"]
@@ -128,7 +261,7 @@
                                      withLatitude:[discussion objectForKey:@"latitude"]
                                      withLongitude:[discussion objectForKey:@"longitude"]
                                      withRating:[discussion objectForKey:@"rating_total"]
-                                     withRatingFlag:[discussion objectForKey:@"rating_total_flag"]]];
+                                     withRatingFlag:[discussion objectForKey:@"user_rating"]]];
         
         NSArray *commentsArray = [discussion objectForKey:@"comments"];
 
@@ -162,34 +295,6 @@
                                      withRating:[bulletin objectForKey:@"user_rating"]
                                      withRatingFlag:[bulletin objectForKey:@"user_rating_flag"]]];
     }
-
-//    for (int i = 0; i < [_discussionArray count]; i++)
-//    {
-//        NewsFeedObject *printObject = [_discussionArray objectAtIndex:i];
-//        NSLog(@"Title: %@", printObject.titleString);
-//        NSLog(@"User: %@", printObject.usernameString);
-//        NSLog(@"Message: %@", printObject.messageString);
-//        NSLog(@"Rating: %@", printObject.ratingString);
-//        NSLog(@"Rating Flag: %@", printObject.ratingFlagString);
-//    }
-}
-
-
-- (IBAction)ratingUpButtonPressed:(id)sender
-{
-    
-}
-
-
-- (IBAction)ratingDownButtonPressed:(id)sender
-{
-    
-}
-
-
-- (IBAction)trashButtonPressed:(id)sender
-{
-    
 }
 
 
@@ -260,22 +365,25 @@
     cell.rateLabel.text = [NSString stringWithFormat:@"%@", objectToDisplay.ratingString];
     cell.usernameLabel.text = objectToDisplay.usernameString;
     
-    //NSString *flagCheckString = [NSString stringWithFormat:@"%@", objectToDisplay.ratingFlagString];
-//    if ([flagCheckString isEqualToString:@"-1"])
-//    {
-//        [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbdown_checked.png"] forState:UIControlStateNormal];
-//    }
+    NSString *flagCheckString = [NSString stringWithFormat:@"%@", objectToDisplay.ratingFlagString];
+    //NSLog(@"Row: %ld, Flag: %@", (long)indexPath.row, flagCheckString);
+    if ([flagCheckString isEqualToString:@"-1"])
+    {
+        [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbdown_checked.png"] forState:UIControlStateNormal];
+        [cell.voteUpButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbup_unchecked.png"] forState:UIControlStateNormal];
+    }
     
-//    if ([flagCheckString isEqualToString:@"1"])
-//    {
-//        [cell.voteUpButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbup_checked.png"] forState:UIControlStateNormal];
-//    }
-//    
-//    else
-//    {
-//        [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"thumbs_down.png"] forState:UIControlStateNormal];
-//        [cell.voteUpButton setBackgroundImage:[UIImage imageNamed:@"thumbs_up.png"] forState:UIControlStateNormal];
-//    }
+    else if ([flagCheckString isEqualToString:@"1"])
+    {
+        [cell.voteUpButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbup_checked.png"] forState:UIControlStateNormal];
+        [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbdown_unchecked.png"] forState:UIControlStateNormal];
+    }
+    
+    else
+    {
+        [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbdown_unchecked.png"] forState:UIControlStateNormal];
+        [cell.voteUpButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbup_unchecked.png"] forState:UIControlStateNormal];
+    }
 
     
     if ([objectToDisplay.numberOfComments isEqualToString:@"1"])

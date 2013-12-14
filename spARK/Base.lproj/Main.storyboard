@@ -95,7 +95,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="egm-g6-XRB">
                                                     <rect key="frame" x="15" y="177" width="33" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="thumbs_up.png">
+                                                    <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -105,7 +105,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O6N-Eg-hTe">
                                                     <rect key="frame" x="76" y="180" width="32" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" image="thumbs_down.png">
+                                                    <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -896,8 +896,6 @@
         <image name="ic_menu_preferences.png" width="64" height="64"/>
         <image name="ic_menu_profile.png" width="48" height="48"/>
         <image name="spark_logo.png" width="350" height="350"/>
-        <image name="thumbs_down.png" width="32" height="32"/>
-        <image name="thumbs_up.png" width="32" height="32"/>
     </resources>
     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
