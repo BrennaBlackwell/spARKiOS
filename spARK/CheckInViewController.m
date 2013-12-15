@@ -190,7 +190,6 @@
 }
 
 
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"pinView"];
@@ -211,6 +210,25 @@
     }
     
     return pinView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    NSString *title = view.annotation.title;
+    NSString *subtitle = view.annotation.subtitle;
+    
+    if ([subtitle isEqualToString:@"View Comments"])
+    {
+        for (NewsFeedObject *object in _discussionArray)
+        {
+            if ([object.titleString isEqualToString:title])
+            {
+                CommentViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CommentView"];
+                newViewController.originalDiscussion = object;
+                [self.navigationController pushViewController:newViewController animated:YES];
+            }
+        }
+    }
 }
 
 
