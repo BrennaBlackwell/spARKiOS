@@ -112,7 +112,6 @@
     
     NSString *objectID = objectToRate.idString;
     NSString *currentRating = [NSString stringWithFormat:@"%@", objectToRate.ratingFlagString];
-    //NSLog(@"Rated: %@", currentRating);
     
     if (![currentRating isEqualToString:@"0"])
     {
@@ -164,7 +163,6 @@
     
     NSString *objectID = objectToRate.idString;
     NSString *currentRating = [NSString stringWithFormat:@"%@", objectToRate.ratingFlagString];
-    //NSLog(@"Rated: %@", currentRating);
     
     if (![currentRating isEqualToString:@"0"])
     {
@@ -280,7 +278,8 @@
                                      withLatitude:[discussion objectForKey:@"latitude"]
                                      withLongitude:[discussion objectForKey:@"longitude"]
                                      withRating:[discussion objectForKey:@"rating_total"]
-                                     withRatingFlag:[discussion objectForKey:@"user_rating"]]];
+                                     withRatingFlag:[discussion objectForKey:@"user_rating"]
+                                     withGroup:@""]];
         
         NSArray *commentsArray = [discussion objectForKey:@"comments"];
 
@@ -302,17 +301,18 @@
         NSDictionary *bulletin = [bulletinArray objectAtIndex:i];
         
         [_bulletinArray addObject:[NewsFeedObject
-                                     newNewsFeedObjectWithID:[bulletin objectForKey:@"id"]
-                                     withTitle:[bulletin objectForKey:@"title"]
-                                     withPostTime:[bulletin objectForKey:@"timestamp"]
-                                     withUser:[bulletin objectForKey:@"username"]
-                                     withUserID:[bulletin objectForKey:@"userid"]
-                                     withMessage:[bulletin objectForKey:@"body"]
-                                     withUserImage:[bulletin objectForKey:@""]
-                                     withLatitude:[bulletin objectForKey:@"latitude"]
-                                     withLongitude:[bulletin objectForKey:@"longitude"]
-                                     withRating:[bulletin objectForKey:@"rating_total"]
-                                     withRatingFlag:[bulletin objectForKey:@"user_rating"]]];
+                                   newNewsFeedObjectWithID:[bulletin objectForKey:@"id"]
+                                   withTitle:[bulletin objectForKey:@"title"]
+                                   withPostTime:[bulletin objectForKey:@"timestamp"]
+                                   withUser:[bulletin objectForKey:@"username"]
+                                   withUserID:[bulletin objectForKey:@"userid"]
+                                   withMessage:[bulletin objectForKey:@"body"]
+                                   withUserImage:[bulletin objectForKey:@""]
+                                   withLatitude:[bulletin objectForKey:@"latitude"]
+                                   withLongitude:[bulletin objectForKey:@"longitude"]
+                                   withRating:[bulletin objectForKey:@"rating_total"]
+                                   withRatingFlag:[bulletin objectForKey:@"user_rating"]
+                                   withGroup:@""]];
     }
 }
 

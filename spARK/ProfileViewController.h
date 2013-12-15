@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SWRevealViewController.h"
+#import "EditProfileViewController.h"
 
 #define kLoginInfo @"Login.plist"
 
@@ -16,5 +17,9 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UIImageView *profileImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *fullnameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *aboutLabel;
+
+- (IBAction)editAccountButtonPressed:(id)sender;
 
 @end

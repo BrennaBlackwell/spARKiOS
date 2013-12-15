@@ -30,17 +30,18 @@
         NSDictionary *comment = [_originalDiscussion.comments objectAtIndex:i];
         
         [_commentsArray addObject:[NewsFeedObject
-                                     newNewsFeedObjectWithID:[comment objectForKey:@"id"]
-                                     withTitle:[comment objectForKey:@"title"]
-                                     withPostTime:[comment objectForKey:@"timestamp"]
-                                     withUser:[comment objectForKey:@"username"]
-                                     withUserID:[comment objectForKey:@"userid"]
-                                     withMessage:[comment objectForKey:@"body"]
-                                     withUserImage:[comment objectForKey:@""]
-                                     withLatitude:[comment objectForKey:@"latitude"]
-                                     withLongitude:[comment objectForKey:@"longitude"]
-                                     withRating:[comment objectForKey:@"user_rating"]
-                                     withRatingFlag:[comment objectForKey:@"user_rating_flag"]]];
+                                   newNewsFeedObjectWithID:[comment objectForKey:@"id"]
+                                   withTitle:[comment objectForKey:@"title"]
+                                   withPostTime:[comment objectForKey:@"timestamp"]
+                                   withUser:[comment objectForKey:@"username"]
+                                   withUserID:[comment objectForKey:@"userid"]
+                                   withMessage:[comment objectForKey:@"body"]
+                                   withUserImage:[comment objectForKey:@""]
+                                   withLatitude:[comment objectForKey:@"latitude"]
+                                   withLongitude:[comment objectForKey:@"longitude"]
+                                   withRating:[comment objectForKey:@"user_rating"]
+                                   withRatingFlag:[comment objectForKey:@"user_rating_flag"]
+                                   withGroup:@""]];
     }
     
     [_tableView reloadData];

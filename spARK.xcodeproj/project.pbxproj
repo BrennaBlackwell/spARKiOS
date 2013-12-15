@@ -14,6 +14,7 @@
 		65479748185CCFAC00B3F3C9 /* btn_thumbup_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 65479744185CCFAC00B3F3C9 /* btn_thumbup_checked.png */; };
 		65479749185CCFAC00B3F3C9 /* btn_thumbdown_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 65479745185CCFAC00B3F3C9 /* btn_thumbdown_unchecked.png */; };
 		6547974A185CCFAC00B3F3C9 /* btn_thumbdown_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 65479746185CCFAC00B3F3C9 /* btn_thumbdown_checked.png */; };
+		6547974D185E4FDA00B3F3C9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6547974C185E4FDA00B3F3C9 /* EditProfileViewController.m */; };
 		656D0E7418569B680047C137 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D0E7318569B680047C137 /* CommentViewController.m */; };
 		656D0E761856B8010047C137 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E751856B8010047C137 /* QuartzCore.framework */; };
 		656D0E781856B80F0047C137 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E771856B80F0047C137 /* ImageIO.framework */; };
@@ -82,6 +83,8 @@
 		65479744185CCFAC00B3F3C9 /* btn_thumbup_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_thumbup_checked.png; sourceTree = "<group>"; };
 		65479745185CCFAC00B3F3C9 /* btn_thumbdown_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_thumbdown_unchecked.png; sourceTree = "<group>"; };
 		65479746185CCFAC00B3F3C9 /* btn_thumbdown_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_thumbdown_checked.png; sourceTree = "<group>"; };
+		6547974B185E4FDA00B3F3C9 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		6547974C185E4FDA00B3F3C9 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		656D0E7218569B680047C137 /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		656D0E7318569B680047C137 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		656D0E751856B8010047C137 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -229,6 +232,8 @@
 				656D0E7318569B680047C137 /* CommentViewController.m */,
 				65A0B180182716DB0089D5FE /* ProfileViewController.h */,
 				65A0B181182716DB0089D5FE /* ProfileViewController.m */,
+				6547974B185E4FDA00B3F3C9 /* EditProfileViewController.h */,
+				6547974C185E4FDA00B3F3C9 /* EditProfileViewController.m */,
 				6523A5331835AA3F00F01FF0 /* CheckInViewController.h */,
 				6523A5341835AA3F00F01FF0 /* CheckInViewController.m */,
 				6516C916184E53F700DB38CF /* LogOutViewController.h */,
@@ -455,6 +460,7 @@
 			files = (
 				65A0B143182714CB0089D5FE /* spARKViewController.m in Sources */,
 				65A0B13D182714CB0089D5FE /* spARKAppDelegate.m in Sources */,
+				6547974D185E4FDA00B3F3C9 /* EditProfileViewController.m in Sources */,
 				6529028618285FBA0084A3DC /* NewsFeedCell.m in Sources */,
 				65A0B139182714CB0089D5FE /* main.m in Sources */,
 				656D0E7418569B680047C137 /* CommentViewController.m in Sources */,

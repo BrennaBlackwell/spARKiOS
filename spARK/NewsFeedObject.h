@@ -24,8 +24,9 @@
 @property (nonatomic, strong) NSString *ratingFlagString;
 @property (nonatomic, strong) NSArray *comments;
 @property (nonatomic, strong) NSString *numberOfComments;
+@property (nonatomic, strong) NSString *group;
 
 
-+ (NewsFeedObject *)newNewsFeedObjectWithID:(NSString *)identification withTitle:(NSString *)title withPostTime:(NSString *)timePosted withUser:(NSString *)username withUserID:(NSString *)userIdentification withMessage:(NSString *)message withUserImage:(NSString *)userImage withLatitude:(NSString *)latitude withLongitude:(NSString *)longitude withRating:(NSString *)rating withRatingFlag:(NSString *)ratingFlag;
++ (NewsFeedObject *)newNewsFeedObjectWithID:(NSString *)identification withTitle:(NSString *)title withPostTime:(NSString *)timePosted withUser:(NSString *)username withUserID:(NSString *)userIdentification withMessage:(NSString *)message withUserImage:(NSString *)userImage withLatitude:(NSString *)latitude withLongitude:(NSString *)longitude withRating:(NSString *)rating withRatingFlag:(NSString *)ratingFlag withGroup:(NSString *)group;
 
 @end

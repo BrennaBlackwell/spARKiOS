@@ -82,7 +82,8 @@
                                      withLatitude:[discussion objectForKey:@"latitude"]
                                      withLongitude:[discussion objectForKey:@"longitude"]
                                      withRating:[discussion objectForKey:@"rating_total"]
-                                     withRatingFlag:[discussion objectForKey:@"user_rating"]]];
+                                     withRatingFlag:[discussion objectForKey:@"user_rating"]
+                                     withGroup:@""]];
         
         NSArray *commentsArray = [discussion objectForKey:@"comments"];
         
@@ -114,7 +115,8 @@
                                    withLatitude:[bulletin objectForKey:@"latitude"]
                                    withLongitude:[bulletin objectForKey:@"longitude"]
                                    withRating:[bulletin objectForKey:@"rating_total"]
-                                   withRatingFlag:[bulletin objectForKey:@"user_rating"]]];
+                                   withRatingFlag:[bulletin objectForKey:@"user_rating"]
+                                   withGroup:@""]];
     }
 }
 
@@ -230,6 +232,8 @@
         }
     }
 }
+
+
 
 
 @end
