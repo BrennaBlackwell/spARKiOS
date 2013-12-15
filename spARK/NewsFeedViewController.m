@@ -14,6 +14,8 @@
     NSString *filePath;
     NSString *username;
     NSString *userID;
+    
+    int blockRow;
     int contentDisplay;
 }
 
@@ -109,6 +111,13 @@
     }
     
     NSString *objectID = objectToRate.idString;
+    NSString *currentRating = [NSString stringWithFormat:@"%@", objectToRate.ratingFlagString];
+    NSLog(@"Rated: %@", currentRating);
+    
+    if (![currentRating isEqualToString:@"0"])
+    {
+        type = @"delete";
+    }
     
     NSString *ratingURLString = @"http://csce.uark.edu/~mmmcclel/spark/rating.php?value1=";
     ratingURLString = [ratingURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, objectID, type];
@@ -154,6 +163,13 @@
     }
     
     NSString *objectID = objectToRate.idString;
+    NSString *currentRating = [NSString stringWithFormat:@"%@", objectToRate.ratingFlagString];
+    NSLog(@"Rated: %@", currentRating);
+    
+    if (![currentRating isEqualToString:@"0"])
+    {
+        type = @"delete";
+    }
     
     NSString *ratingURLString = @"http://csce.uark.edu/~mmmcclel/spark/rating.php?value1=";
     ratingURLString = [ratingURLString stringByAppendingFormat:@"%@&value2=%@&value3=%@", userID, objectID, type];
@@ -301,12 +317,6 @@
 }
 
 
-- (void)populateTableWithFetchedData:(NSData *)resultData
-{
-    
-}
-
-
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -369,7 +379,7 @@
     cell.usernameLabel.text = objectToDisplay.usernameString;
     
     NSString *flagCheckString = [NSString stringWithFormat:@"%@", objectToDisplay.ratingFlagString];
-    //NSLog(@"Row: %ld, Flag: %@", (long)indexPath.row, flagCheckString);
+
     if ([flagCheckString isEqualToString:@"-1"])
     {
         [cell.voteDownButton setBackgroundImage:[UIImage imageNamed:@"btn_thumbdown_checked.png"] forState:UIControlStateNormal];
@@ -394,7 +404,88 @@
     else
         [cell.commentsButton setTitle:[NSString stringWithFormat:@"%@ comment", objectToDisplay.numberOfComments] forState:UIControlStateNormal];
     
+    
+    UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc]
+                                                                initWithTarget:self action:@selector(handleLongPress:)];
+    longPressGestureRecognizer.minimumPressDuration = 1.0;
+    [cell addGestureRecognizer:longPressGestureRecognizer];
+    
     return cell;
+}
+
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)longPress
+{
+    if (longPress.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint position = [longPress locationInView:_tableView];
+        NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:position];
+        blockRow = (int)indexPath.row;
+
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Block this user?"
+                                                                 delegate:self
+                                                        cancelButtonTitle:@"No"
+                                                   destructiveButtonTitle:nil
+                                                        otherButtonTitles:@"Yes", nil];
+        [actionSheet showInView:self.view];
+    }
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != [actionSheet cancelButtonIndex])
+    {
+        NSLog(@"Block that fucker!");
+        
+        NSString *block = @"Block";
+        NSString *contentType;
+        
+        if (contentDisplay == 0)
+        {
+            contentType = @"Discussion";
+        }
+        
+        else if (contentDisplay == 1)
+        {
+            contentType = @"Bulletin";
+        }
+        
+        NSString *blockURLString = @"http://csce.uark.edu/~mmmcclel/spark/blockcontent.php?value1=";
+        blockURLString = [blockURLString stringByAppendingFormat:@"%@&value2=%@&value3=%d&value4=%@", block, userID, blockRow, contentType];
+        NSLog(@"%@", blockURLString);
+        
+        NSURL *url = [NSURL URLWithString:blockURLString];
+        NSData *urlData = [NSData dataWithContentsOfURL:url];
+        
+        if (urlData)
+        {
+            NSError *errorJSON = nil;
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&errorJSON];
+            NSString *successString = [[json objectForKey:@"blockSuccess"] stringValue];
+            
+            if ([successString isEqualToString:successString])
+            {
+                NSLog(@"Block success");
+            }
+            
+            else
+            {
+                NSLog(@"Block fail");
+            }
+        }
+    }
+}
+
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    for (UIView *subview in actionSheet.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)subview;
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        }
+    }
 }
 
 

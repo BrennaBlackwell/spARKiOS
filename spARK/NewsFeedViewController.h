@@ -19,7 +19,8 @@
 #define kGroup @"Group"
 
 @interface NewsFeedViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource>
+<UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate,
+UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UIBarButtonItem *addContentButton;
