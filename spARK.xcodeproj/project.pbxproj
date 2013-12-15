@@ -19,7 +19,6 @@
 		656D0E781856B80F0047C137 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E771856B80F0047C137 /* ImageIO.framework */; };
 		656D0E7A1856B8180047C137 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E791856B8180047C137 /* MessageUI.framework */; };
 		656D0E841857A3C40047C137 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E831857A3C40047C137 /* MapKit.framework */; };
-		656D0E8A18580E280047C137 /* MapTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D0E8918580E280047C137 /* MapTag.m */; };
 		656D0E8E185822310047C137 /* PostNewContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 656D0E8D185822310047C137 /* PostNewContentViewController.m */; };
 		656D0E9018592CCA0047C137 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656D0E8F18592CCA0047C137 /* CoreLocation.framework */; };
 		65A0B12D182714CB0089D5FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A0B12C182714CB0089D5FE /* Foundation.framework */; };
@@ -89,8 +88,6 @@
 		656D0E771856B80F0047C137 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		656D0E791856B8180047C137 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		656D0E831857A3C40047C137 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		656D0E8818580E280047C137 /* MapTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTag.h; sourceTree = "<group>"; };
-		656D0E8918580E280047C137 /* MapTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTag.m; sourceTree = "<group>"; };
 		656D0E8C185822310047C137 /* PostNewContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostNewContentViewController.h; sourceTree = "<group>"; };
 		656D0E8D185822310047C137 /* PostNewContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostNewContentViewController.m; sourceTree = "<group>"; };
 		656D0E8F18592CCA0047C137 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -174,15 +171,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		656D0E8B18580E2D0047C137 /* MapTag */ = {
-			isa = PBXGroup;
-			children = (
-				656D0E8818580E280047C137 /* MapTag.h */,
-				656D0E8918580E280047C137 /* MapTag.m */,
-			);
-			name = MapTag;
-			sourceTree = "<group>";
-		};
 		65A0B120182714CB0089D5FE = {
 			isa = PBXGroup;
 			children = (
@@ -313,7 +301,6 @@
 		65A0B179182715A80089D5FE /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				656D0E8B18580E2D0047C137 /* MapTag */,
 				65A0B18918271EB40089D5FE /* SWReveal */,
 			);
 			name = Libraries;
@@ -469,7 +456,6 @@
 				65A0B143182714CB0089D5FE /* spARKViewController.m in Sources */,
 				65A0B13D182714CB0089D5FE /* spARKAppDelegate.m in Sources */,
 				6529028618285FBA0084A3DC /* NewsFeedCell.m in Sources */,
-				656D0E8A18580E280047C137 /* MapTag.m in Sources */,
 				65A0B139182714CB0089D5FE /* main.m in Sources */,
 				656D0E7418569B680047C137 /* CommentViewController.m in Sources */,
 				65A0B17C182715DC0089D5FE /* NewsFeedViewController.m in Sources */,

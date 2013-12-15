@@ -112,7 +112,7 @@
     
     NSString *objectID = objectToRate.idString;
     NSString *currentRating = [NSString stringWithFormat:@"%@", objectToRate.ratingFlagString];
-    NSLog(@"Rated: %@", currentRating);
+    //NSLog(@"Rated: %@", currentRating);
     
     if (![currentRating isEqualToString:@"0"])
     {
@@ -164,7 +164,7 @@
     
     NSString *objectID = objectToRate.idString;
     NSString *currentRating = [NSString stringWithFormat:@"%@", objectToRate.ratingFlagString];
-    NSLog(@"Rated: %@", currentRating);
+    //NSLog(@"Rated: %@", currentRating);
     
     if (![currentRating isEqualToString:@"0"])
     {
